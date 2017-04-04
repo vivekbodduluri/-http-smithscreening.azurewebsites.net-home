@@ -1,0 +1,97 @@
+﻿<h2>Write a Review</h2><br/>
+    <button type="button" ng-click="showTable=!showTable" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> write a reivew
+    </button>
+
+
+<br/>
+<div class="container" ng-show="showTable">
+
+    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+        <fieldset>
+
+            
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Title</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="first_name" placeholder="Review Title" class="form-control" type="text" ng-model="title">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Reivew</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="last_name" placeholder="Write a Review" class="form-control" type="text" ng-model="Review">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Rating</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+                        <input name="email" placeholder="5 stars" class="form-control" type="number" ng-model="Rating">
+                    </div>
+                </div>
+            </div>
+
+
+                     <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="button" value="Save" class="btn btn-warning" ng-click="saveReview()">Send <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+   
+
+
+
+
+    <table  class="table table-striped" st-pipe="callServer" ng-show="!showTable" st-table="todoList">
+        <thead>
+            <tr>
+                <th st-sort="UserName">User Name </th>
+                <th st-sort="ReviewTitle">Title</th>
+                <th st-sort="ReviewComment">Review</th>
+                <th st-sort="Rating">Rating</th>
+              
+            </tr>
+            
+        </thead>
+        <tbody ng-show="!isLoading">
+            <tr ng-repeat="row in todoList">
+                <td>{{row.UserName | uppercase}}</td>
+                <td>{{row.ReviewTitle}}</td>
+                <td>{{row.ReviewComment }}</td>
+                <td>{{row.Rating }}</td>
+            </tr>
+        </tbody>
+        <tbody ng-show="isLoading">
+            <tr>
+                <td colspan="4" class="text-center">Loading ... </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="2" colspan="4"></td>
+            </tr>
+        </tfoot>
+    </table>
